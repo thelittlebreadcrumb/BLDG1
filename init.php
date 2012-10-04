@@ -3,7 +3,7 @@
 ob_start();
 session_start();
 
-mysql_connect('localhost','root','');
+mysql_connect('localhost','root','123456');
 mysql_select_db('visualupload');
 
 include '/func/user.func.php';

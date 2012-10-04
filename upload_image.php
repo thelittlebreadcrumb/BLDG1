@@ -15,6 +15,8 @@ include './template/header.php';
 
 //checks if the user has an album. uploading iamges [1-4] (22-30)
 
+
+
 if (isset($_FILES['image'], $_POST['album_id'])) {
 	$image_name = $_FILES['image'] ['name'];
 	$image_size = $_FILES['image'] ['size'];
@@ -63,7 +65,7 @@ if (empty($albums)) {
 } else {
 ?>
 
-<form action="" method="post" enc="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data">
 	<p>Choose a file: <input type="file" name="image" /></p>
 	<p>Choose an album: <br />
 		<select name="album_id">
@@ -79,6 +81,7 @@ if (empty($albums)) {
 
 <?php
 }
+
 
 include './template/footer.php';
 ?>
