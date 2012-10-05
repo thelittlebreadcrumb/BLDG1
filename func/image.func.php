@@ -40,4 +40,6 @@ function delete_image($image_id) {
 
 }
 
+
+//comment to test for git
 ?>
