@@ -3,9 +3,8 @@
 function upload_image($image_temp, $image_ext, $album_id) {
 	$album_id = (int)$album_id;
 
-	$qar = mysql_query("INSERT INTO `images` VALUES ('', '".$_SESSION['user_id']."', '$album_id', UNIX_TIMESTAMP(), '$image_ext')") or die(mysql_error());
+	mysql_query("INSERT INTO `images` VALUES ('', '".$_SESSION['user_id']."', '$album_id', UNIX_TIMESTAMP(), '$image_ext')") or die(mysql_error());
 	$image_id = mysql_insert_id();
-	// $image_file = $image_id.'.'.$image_ext'; //
 	$image_file = $image_id . '.' . $image_ext;
 	move_uploaded_file($image_temp, 'uploads/'.$album_id.'/'.$image_file);
 
@@ -13,10 +12,27 @@ function upload_image($image_temp, $image_ext, $album_id) {
 }
 
 function get_images($album_id) {
+	$album_id = (int)$album_id;
 
+	$images = array();
+
+	$image_query = mysql_query("SELECT `image_id`, `album_id`, `timestamp`, `ext` FROM `images` WHERE `album_id`=$album_id AND `user_id`=".$_SESSION['user_id']);
+	while ($images_row = mysql_fetch_assoc($image_query)) {
+		$images[] = array(
+				'id' => $images_row['image_id'],
+				'album' => $images_row['album_id'],
+				'timestamp' => $images_row['timestamp'],
+				'ext' => $images_row['ext']
+			);
+	}
+
+	return $images;
 }
 
 function image_check($image_id) {
+	$image_id = (int)$image_id;
+	$query = mysql_query("SELECT COUNT(`image_id`) FROM `images` WHER `image_id`=$image_id AND `user_id`=".$_SESSION['user_id']);
+	return (mysql_result($query, 0) == 0) ? false: true;
 
 }
 
