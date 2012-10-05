@@ -31,14 +31,29 @@ function get_images($album_id) {
 
 function image_check($image_id) {
 	$image_id = (int)$image_id;
-	$query = mysql_query("SELECT COUNT(`image_id`) FROM `images` WHER `image_id`=$image_id AND `user_id`=".$_SESSION['user_id']);
+	$query = mysql_query("SELECT COUNT(`image_id`) FROM `images` WHERE `image_id`=$image_id AND `user_id`=".$_SESSION['user_id']);
 	return (mysql_result($query, 0) == 0) ? false: true;
 
 }
 
 function delete_image($image_id) {
+	$image_id = (int)$image_id;
 
-}
+	$image_query = mysql_query("SELECT `album_id`, `ext` FROM `images` WHERE `image_id`=$image_id AND `user_id`=".$_SESSION['user_id']);
+	$image_result = mysql_fetch_assoc($image_query);
+
+	$album_id = $image_result['album_id'];
+	$image_ext = $image_result['ext'];
+
+	// unlink('uploads/'.$album_id.'/'.$image_id.'.'.$image_ext);
+	// unlink('uploads/thumbs/'.$album_id.'/'.$image_id.'.'.$image_ext);
+
+	unlink("./uploads/$album_id/$image_id.$image_ext");
+	unlink("./uploads/thumbs/$album_id/$image_id.$image_ext");
+
+
+	mysql_query("DELETE FROM `images` WHERE `image_id`=$image_result AND `user_id`=".$_SESSION['user_id']) or die(mysql_error());
+}	
 
 
 //comment to test for git
