@@ -12,7 +12,6 @@ function upload_image($image_temp, $image_ext, $album_id) {
 }
 
 function get_images($album_id) {
-<<<<<<< HEAD
 	$album_id = (int)$album_id;
 
 	$images = array();
@@ -34,21 +33,18 @@ function image_check($image_id) {
 	$image_id = (int)$image_id;
 	$query = mysql_query("SELECT COUNT(`image_id`) FROM `images` WHERE `image_id`=$image_id AND `user_id`=".$_SESSION['user_id']);
 	return (mysql_result($query, 0) == 0) ? false: true;
-=======
-
-}
-
-function image_check($image_id) {
->>>>>>> 55c350acadfa25f84ea8b7898837fb2aedad48ef
 
 }
 
 function delete_image($image_id) {
-<<<<<<< HEAD
 	$image_id = (int)$image_id;
 
-	$image_query = mysql_query("SELECT `album_id`, `ext` FROM `images` WHERE `image_id`=$image_id AND `user_id`=".$_SESSION['user_id']);
+	$image_query = mysql_query("SELECT `album_id`, `ext` FROM `images` WHERE `image_id`=$image_id AND `user_id`=".$_SESSION['user_id']) or die(mysql_error());
+	echo $image_query;
+	
 	$image_result = mysql_fetch_assoc($image_query);
+
+	var_dump($image_result);
 
 	$album_id = $image_result['album_id'];
 	$image_ext = $image_result['ext'];
@@ -60,14 +56,9 @@ function delete_image($image_id) {
 	unlink("./uploads/thumbs/$album_id/$image_id.$image_ext");
 
 
-	mysql_query("DELETE FROM `images` WHERE `image_id`=$image_result AND `user_id`=".$_SESSION['user_id']) or die(mysql_error());
+	mysql_query("DELETE FROM `images` WHERE `image_id`=$image_id AND `user_id`=".$_SESSION['user_id']) or die(mysql_error());
 }	
 
 
 //comment to test for git
-=======
-
-}
-
->>>>>>> 55c350acadfa25f84ea8b7898837fb2aedad48ef
 ?>
