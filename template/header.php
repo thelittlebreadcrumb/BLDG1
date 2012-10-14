@@ -9,7 +9,7 @@
             <?php include 'widgets/menu.php'; ?>
       </div>
       <div id="container">
-           <a href="index.php"><img src="images/logo.png" alt="VisualUpload" /></a>
+           <a href="index.php"><img id="subs" src="http://dummyimage.com/220x50/4d494d/686a82.gif&text=placeholder+image" title="placeholder+image"></a>
            <span class="right">
               <?php include 'widgets/login.php'; ?>
            </span>

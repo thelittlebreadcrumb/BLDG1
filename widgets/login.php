@@ -1,7 +1,7 @@
 <?php
 
 if (logged_in()) {
-	$user_data = user_data('name');
+	$user_data = user_data('name', 'email');
 	echo 'Hello ', $user_data['name'];
 } else {
 ?>

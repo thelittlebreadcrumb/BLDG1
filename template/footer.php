@@ -2,8 +2,8 @@
 
       </div>
       <div id="footer">
-           &copy; VisualUpload 2011. All rights reserved.
-           <span class="right">"Film" graphic courtesy of Dan at <a href="http://freedigitalphotos.net/images/view_photog.php?photogid=587">freedigitalphotos.net</a></span>
+           &copy; BLDG1Collab. All rights reserved.
+           <span class="right">Blah Blah Blah<a href="javascript:void(0)"> Bllaauuughgh</a></span>
       </div>
 
 </body>
